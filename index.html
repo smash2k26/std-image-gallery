@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Student portraits organized by class for the 2026 school year.">
+  <title>Student Gallery | 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="page-shell">
+    <header class="site-header">
+      <div class="brand-lockup">
+        <span class="brand-mark" aria-hidden="true">SG</span>
+        <div>
+          <p class="eyebrow">Academic year 2026</p>
+          <h1>Student gallery</h1>
+        </div>
+      </div>
+      <div class="header-meta">
+        <span class="status-dot" aria-hidden="true"></span>
+        <span>7 classes <b>/</b> <strong id="total-count">124</strong> portraits</span>
+      </div>
+    </header>
+
+    <main>
+      <section class="intro-row" aria-labelledby="gallery-title">
+        <div>
+          <p class="section-kicker">Portrait archive</p>
+          <h2 id="gallery-title">Meet the students.</h2>
+          <p class="intro-copy">Browse each class collection from the 2026 student archive.</p>
+        </div>
+        <label class="search-box">
+          <span class="search-icon" aria-hidden="true">⌕</span>
+          <span class="sr-only">Search students</span>
+          <input id="search-input" type="search" placeholder="Search by name" autocomplete="off">
+          <kbd>/</kbd>
+        </label>
+      </section>
+
+      <nav class="class-tabs" aria-label="Choose a class" role="tablist">
+        <button class="tab-button is-active" role="tab" aria-selected="true" aria-controls="class-panel" data-class="1">Class 1</button>
+        <button class="tab-button" role="tab" aria-selected="false" aria-controls="class-panel" data-class="2">Class 2</button>
+        <button class="tab-button" role="tab" aria-selected="false" aria-controls="class-panel" data-class="3">Class 3</button>
+        <button class="tab-button" role="tab" aria-selected="false" aria-controls="class-panel" data-class="4">Class 4</button>
+        <button class="tab-button" role="tab" aria-selected="false" aria-controls="class-panel" data-class="5">Class 5</button>
+        <button class="tab-button" role="tab" aria-selected="false" aria-controls="class-panel" data-class="6">Class 6</button>
+        <button class="tab-button" role="tab" aria-selected="false" aria-controls="class-panel" data-class="7">Class 7</button>
+      </nav>
+
+      <section id="class-panel" class="gallery-panel" role="tabpanel" tabindex="0" aria-live="polite">
+        <div class="panel-heading">
+          <div>
+            <span class="class-label">Selected collection</span>
+            <h3 id="class-title">Class 1</h3>
+          </div>
+          <p id="class-count">25 portraits</p>
+        </div>
+        <div id="gallery-grid" class="gallery-grid"></div>
+        <div id="empty-state" class="empty-state" hidden>
+          <span class="empty-icon">?</span>
+          <h3>No students found</h3>
+          <p>Try a different name or clear your search.</p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <span>Student Details &amp; Photos 2026</span>
+      <span>Organized by class</span>
+    </footer>
+  </div>
+
+  <dialog id="lightbox" class="lightbox">
+    <button id="close-lightbox" class="close-button" type="button" aria-label="Close photo viewer">&times;</button>
+    <img id="lightbox-image" src="" alt="">
+    <div class="lightbox-caption">
+      <strong id="lightbox-name"></strong>
+      <span id="lightbox-class"></span>
+    </div>
+  </dialog>
+  <script src="app.js"></script>
+</body>
+</html>
