@@ -44,7 +44,7 @@ kbd { padding: 3px 6px; border: 1px solid var(--line); border-radius: 5px; color
 .panel-heading { display: flex; align-items: end; justify-content: space-between; margin-bottom: 22px; }
 .panel-heading h3 { margin: 6px 0 0; font-family: "Space Grotesk", sans-serif; font-size: 28px; letter-spacing: -.05em; }
 .panel-heading p { margin: 0; color: var(--muted); font-size: 13px; }
-.gallery-grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 17px; }
+.gallery-grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 45px; }
 .photo-card { min-width: 0; border: 0; padding: 0; text-align: left; color: var(--ink); background: transparent; animation: rise .45s both; }
 .photo-card:hover .photo-frame { transform: translateY(-5px); box-shadow: var(--shadow); }
 .photo-frame { position: relative; overflow: hidden; aspect-ratio: 1 / 1.12; border-radius: 8px; background: var(--sage); transition: transform .25s, box-shadow .25s; }
