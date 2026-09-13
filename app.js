@@ -8,6 +8,7 @@ const classPhotos = {
   6: ["ABDUL BASITH M M.png", "AHMED YASIR M.K.jpg", "HADHI M.F.jpg", "JAZIB MOHAMMED.K.jpg", "MOHAMMED ANSHIF.jpg", "MUHAMMED AJSAL CM.jpg", "MUHAMMED ALI MUNAVVIR P.A.jpg", "MUHAMMED ARSHID.jpg", "MUHAMMED HABEEBU RAHMAN E.jpg", "MUHAMMED HADI AMEEN.jpg", "MUHAMMED NIHAL O.N.jpg", "MUHAMMED RASI .A.png", "MUHAMMED RISHAM M.K.jpg", "MUHAMMED RIYAN K.jpg", "NIZAMUDHEEN CK.jpg", "SHAHAFAS IBI AK.jpg", "SWALAHUDHEEN PS.jpg"],
   7: ["AJWAD IHSAN P.jpg", "MOHAMMED FYROOSE.jpg", "MUHAMED MUSHFIQ.jpg", "MUHAMMED BADUSHA.jpg", "MUHAMMED JURAIJ K.jpg", "MUHAMMED RISWAN.jpg", "MUHAMMED SHIFAN.jpg", "MUHAMMED SWALIH.jpg", "SHAHINSHA.jpg", "SUHAIL MUHAMMAD.jpg"]
 };
+const collectionFolders = { common: "common", 1: "class-1", 2: "class-2", 3: "class-3", 4: "class-4", 5: "class-5", 6: "class-6", 7: "class-7" };
 
 const grid = document.querySelector("#gallery-grid");
 const emptyState = document.querySelector("#empty-state");
@@ -18,10 +19,10 @@ const lightbox = document.querySelector("#lightbox");
 const lightboxImage = document.querySelector("#lightbox-image");
 const lightboxName = document.querySelector("#lightbox-name");
 const lightboxClass = document.querySelector("#lightbox-class");
-let activeClass = 1;
+let activeClass = "1";
 
 const readableName = (filename) => filename.replace(/\.[^.]+$/, "");
-const imagePath = (classNumber, filename) => `public/photos/${classNumber === "common" ? "common" : `class-${classNumber}`}/${encodeURIComponent(filename)}`;
+const imagePath = (collection, filename) => `public/photos/${collectionFolders[collection]}/${encodeURIComponent(filename)}`;
 
 function renderGallery() {
   const query = searchInput.value.trim().toLowerCase();
@@ -52,7 +53,7 @@ function openLightbox(filename) {
 
 document.querySelectorAll(".tab-button").forEach((tab) => {
   tab.addEventListener("click", () => {
-    activeClass = tab.dataset.class === "common" ? "common" : Number(tab.dataset.class);
+    activeClass = tab.dataset.class;
     document.querySelectorAll(".tab-button").forEach((item) => {
       const isActive = item === tab;
       item.classList.toggle("is-active", isActive);
