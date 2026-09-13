@@ -1,4 +1,5 @@
 const classPhotos = {
+  common: ["PASS.jpg", "PASS BLUE copy.jpg", "PASS  ed copy 2.jpg", "logo.png"],
   1: ["ABDUL HADI K.jpg", "ALI BISHRUL HAFI V.jpg", "AMAL JAHAN PK.jpg", "FAHAD VP.jpg", "HAMDAN HASAN P.jpg", "IHSAN TA.jpg", "MUHAMMED ADEEB K.jpg", "MUHAMMED ADHEEB.jpg", "MUHAMMED ADHIL.jpg", "MUHAMMED AFTHASH C.jpg", "MUHAMMED AJSAR TA.jpg", "MUHAMMED ANSIF KT.jpg", "MUHAMMED FAIZAN NP.jpg", "MUHAMMED FARHAN KK.jpg", "MUHAMMED FARHAN YUSUF.jpg", "MUHAMMED JESEEM KK.jpg", "MUHAMMED SAFWAN MS.jpg", "MUHAMMED SHAHZAD KP.jpg", "MUHAMMED SINAN.jpg", "MUHAMMED SWALIH M.jpg", "MUHAMMED ZAYAN IP.jpg", "SAEED SIRAJUDHEEN.jpg", "SAIHAAN ABDUL RAHIM.jpg", "SHAFARUL HAQUE K.jpg", "UMARUL FAROOQ TS.jpg"],
   2: ["ABDUL BASITH PC.jpg", "AFNAN M.jpg", "AHMED THALHATH.jpg", "FIDAN.jpg", "MOHAMMED SHAHABAS.jpg", "MUHAMMAD ANSHID KK.jpg", "MUHAMMAD IRFAN.jpg", "MUHAMMAD JURAIJ KU.jpg", "MUHAMMED AFEEF CK.jpg", "MUHAMMED AJSAL VT.jpg", "MUHAMMED HASHID T.jpg", "MUHAMMED HASHIM PP.jpg", "MUHAMMED MAZIN P.jpg", "MUHAMMED MUZAMMIL P.jpg", "MUHAMMED NISHAD T.jpg", "MUHAMMED RAIHAN.jpg", "MUHAMMED SHIFAN M.jpg", "MUHAMMED YASEEN TA.jpg", "MUHAMMED ZAYYAN P.jpg", "RAZEEN AHMED M.jpg", "SHEHIN MOHAMMED TK.jpg"],
   3: ["HASHIM BIN FAISAL . P.jpg", "MUHAMMED ADHIL T.jpg", "MUHAMMED AFLAH PN.jpg", "MUHAMMED ASHMIL P.jpg", "MUHAMMED BILAL CS.jpg", "MUHAMMED FARHAN VV.jpg", "MUHAMMED HAFEEF CP.jpg", "MUHAMMED HASAN KN.jpg", "MUHAMMED MISHAL K.jpg", "MUHAMMED MUSTHAFA P.jpg", "MUHAMMED SABAH KP.jpg", "MUHAMMED SABITH M.jpg", "MUHAMMED SHAFIN KK.jpg", "MUHAMMED SHAMVEEL.jpg", "MUHAMMED SHIFAN M.jpg", "MUHAMMED ZAYAN MK.jpg", "MUHSINE AMEEN.jpg", "NAZIM FAISAL K.jpg", "SIRAJUDHEEN.jpg"],
@@ -20,12 +21,12 @@ const lightboxClass = document.querySelector("#lightbox-class");
 let activeClass = 1;
 
 const readableName = (filename) => filename.replace(/\.[^.]+$/, "");
-const imagePath = (classNumber, filename) => `public/photos/class-${classNumber}/${encodeURIComponent(filename)}`;
+const imagePath = (classNumber, filename) => `public/photos/${classNumber === "common" ? "common" : `class-${classNumber}`}/${encodeURIComponent(filename)}`;
 
 function renderGallery() {
   const query = searchInput.value.trim().toLowerCase();
   const photos = classPhotos[activeClass].filter((filename) => readableName(filename).toLowerCase().includes(query));
-  classTitle.textContent = `Class ${activeClass}`;
+  classTitle.textContent = activeClass === "common" ? "Common" : `Class ${activeClass}`;
   classCount.textContent = `${photos.length} portrait${photos.length === 1 ? "" : "s"}`;
   grid.innerHTML = "";
   emptyState.hidden = photos.length > 0;
@@ -45,13 +46,13 @@ function openLightbox(filename) {
   lightboxImage.src = imagePath(activeClass, filename);
   lightboxImage.alt = `Portrait of ${readableName(filename)}`;
   lightboxName.textContent = readableName(filename);
-  lightboxClass.textContent = `Class ${activeClass}`;
+  lightboxClass.textContent = activeClass === "common" ? "Common" : `Class ${activeClass}`;
   lightbox.showModal();
 }
 
 document.querySelectorAll(".tab-button").forEach((tab) => {
   tab.addEventListener("click", () => {
-    activeClass = Number(tab.dataset.class);
+    activeClass = tab.dataset.class === "common" ? "common" : Number(tab.dataset.class);
     document.querySelectorAll(".tab-button").forEach((item) => {
       const isActive = item === tab;
       item.classList.toggle("is-active", isActive);
